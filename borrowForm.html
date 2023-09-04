@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+    <div th:object="${Cycles}">
+        <p><span th:text="${Cycles.name}">Atlas</span> Cycle Borrowed!</p>
+        <p>Stock Count: <span th:text="${Cycles.stock}">0</span></p>
+        <form method="post" action="#" th:action="@{'/cycle/borrow/' + ${Cycles.id}}">
+            <input type="submit" value="goback" name="action">
+        </form>
+    </div>
+</body>
+</html>
