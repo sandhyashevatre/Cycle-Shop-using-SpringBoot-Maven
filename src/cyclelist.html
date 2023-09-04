@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cycle Shop</title>
+    <style>
+        /* Apply basic styling to the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style table headers */
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        /* Style table rows */
+        tr:nth-child(even) {
+            background-color: #2cbcc6;
+        }
+        tr:nth-child(odd){
+            background-color: #85eef5;
+        }
+        /* Style table cells */
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Hover effect on rows */
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        /* Style the action buttons */
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        input[name=Restock]{
+            display: flex;
+        }
+        input[name=Borrow]{
+            display: fl;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style the input field for restocking */
+        input[type="text"] {
+            padding: 5px;
+            width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Cycle Shop </h1>
+    <table>
+        <tr>
+            <th>Sr No.</th>
+            <th>Company Name</th>
+            <th>Stock</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="cycle : ${cycleList}">
+            <td th:text="${cycle.id}">1</td>
+            <td th:text="${cycle.company}"></td>
+            <td th:text="${cycle.stock}"></td>
+            <td>
+                <form method="get" th:action="@{/cycle/borrow/{id}(id = ${cycle.id})}">
+                    <input type="submit" name="action" value="Borrow">
+                    <!-- <input type="hidden" th:field="name"> -->
+                </form>
+                <form method="get" th:action="@{/cycle/restock/{id}(id = ${cycle.id})}">
+                    <input type="text" value="1" name="number">
+                    <input type="submit" name="action" value="Restock">
+                    <!-- <input type="hidden" th:field="name"> -->
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
